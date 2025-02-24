@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 const mongoose = require('mongoose');
 
 const app = express();
@@ -8,12 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
+// Connect to MongoDB (Corrected Connection String)
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    
-}).then(() => console.log("Database connected successfully"))
+     useUnifiedTopology: true,
+})
+.then(() => console.log("Database connected successfully"))
 .catch(err => console.error("Database connection error:", err));
 
 // Import Routes
@@ -30,5 +30,5 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
